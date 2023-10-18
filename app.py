@@ -9,7 +9,7 @@ from sqlalchemy.exc import IntegrityError
 from forms import CSRFProtectForm, UserAddForm, LoginForm, MessageForm, UserEditForm
 from models import db, connect_db, User, Message
 
-from urllib.parse import urlparse
+# from urllib.parse import urlparse
 
 load_dotenv()
 
@@ -249,7 +249,7 @@ def start_following(follow_id):
         return redirect("/")
 
     form = g.csrf_form
-    if form.validate_on_submit == False:
+    if form.validate_on_submit is False:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
@@ -272,7 +272,7 @@ def stop_following(follow_id):
         return redirect("/")
 
     form = g.csrf_form
-    if form.validate_on_submit == False:
+    if form.validate_on_submit is False:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
@@ -297,7 +297,7 @@ def profile():
 
     if form.validate_on_submit():
 
-        if User.authenticate(user.username, form.password.data) == False:
+        if User.authenticate(user.username, form.password.data) is False:
             flash("Incorrect password")
             return render_template("/users/edit.html", form=form)
 
@@ -325,7 +325,7 @@ def delete_user():
         return redirect("/")
 
     form = g.csrf_form
-    if form.validate_on_submit == False:
+    if form.validate_on_submit is False:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
@@ -388,7 +388,7 @@ def delete_message(message_id):
         return redirect("/")
 
     form = g.csrf_form
-    if form.validate_on_submit == False:
+    if form.validate_on_submit is False:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
@@ -413,7 +413,7 @@ def like_message(message_id):
         return redirect("/")
 
     form = g.csrf_form
-    if form.validate_on_submit == False:
+    if form.validate_on_submit is False:
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
