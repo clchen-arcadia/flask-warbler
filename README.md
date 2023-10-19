@@ -21,11 +21,12 @@ Twitter clone built in Flask Python where users can make posts, follow other use
 ```
     pip3 install -r requirements.txt 
 ```
-5. Then create the local database with PostgreSQL:
+5. Then create the local database with PostgreSQL and then seed the database:
 ```
     psql
     =# CREATE DATABASE warbler;
     =# (control-d)
+    python3 seed.py
 ```
 6. Then create a .env file in the root directory of the project and include:
 ```
