@@ -21,7 +21,18 @@ Twitter clone built in Flask Python where users can make posts, follow other use
 ```
     pip3 install -r requirements.txt 
 ```
-5. Then run the Flask local host 
+5. Then create the local database with PostgreSQL:
+```
+    psql
+    =# CREATE DATABASE warbler;
+    =# (control-d)
+```
+6. Then create a .env file in the root directory of the project and include:
+```
+    SECRET_KEY=abc123
+    DATABASE_URL=postgresql:///warbler
+```
+7. Now you can run the Flask local host 
 ```
     flask run 
 ```
