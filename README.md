@@ -1,11 +1,11 @@
-# flask-warbler
+# Flask Warbler
 Twitter clone built in Flask Python where users can make posts, follow other users, and like posts.
 
 ![Flask Warbler homepage](./static/warbler-homepage.png "Flask Warbler")
 
-Live Demo here: [https://flask-warbler-bt2x.onrender.com/]
+## Live Demo here: [https://flask-warbler-bt2x.onrender.com/]
 
-To run on your local machine:
+## To run on your local machine:
 
 1. Clone the repo
     % git clone https://github.com/clchen-arcadia/flask-warbler.git
@@ -20,4 +20,3 @@ To run on your local machine:
 Or on Macs:
     % flask run -p 5001
 And then you can visit the site on your browser at localhost:5000 or localhost:50001
-
