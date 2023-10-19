@@ -1,9 +1,8 @@
 # Flask Warbler
 Twitter clone built in Flask Python where users can make posts, follow other users, and like posts.
 
-![Flask Warbler homepage](./static/warbler-homepage.png "Flask Warbler")
-
 ## Live Demo here: https://flask-warbler-bt2x.onrender.com/
+![Flask Warbler homepage](./static/warbler-homepage.png "Flask Warbler")
 
 ## To run on your local machine:
 
