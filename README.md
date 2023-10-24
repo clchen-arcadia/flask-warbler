@@ -1,5 +1,6 @@
 # Flask Warbler
-Twitter clone built in Flask Python where users can make posts, follow other users, and like posts.
+Twitter clone built in Flask Python where users can make posts, follow other users, and like posts.  
+This project is a HTML serving backend server, built with Flask Python and Jinja HTML Templating. The database is managed with PostgreSQL and interacts with ORM SQLAlchemy. Tests are written with Python unittest and packages are managed with pip.
 
 ## Live Demo here: https://flask-warbler-bt2x.onrender.com/
 ![Flask Warbler homepage](./static/warbler-homepage.png "Flask Warbler")
