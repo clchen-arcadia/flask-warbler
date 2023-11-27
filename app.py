@@ -6,7 +6,13 @@ from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
-from forms import CSRFProtectForm, UserAddForm, LoginForm, MessageForm, UserEditForm
+from forms import (
+    CSRFProtectForm,
+    UserAddForm,
+    LoginForm,
+    MessageForm,
+    UserEditForm,
+)
 from models import db, connect_db, User, Message
 
 # from urllib.parse import urlparse
@@ -49,6 +55,7 @@ def add_csrf_to_g():
     """Add a csrf form to g"""
 
     g.csrf_form = CSRFProtectForm()
+
 
 @app.before_request
 def add_previous_url_to_g():
@@ -131,7 +138,7 @@ def signup():
 def login():
     """Handle user login and redirect to homepage on success."""
 
-    form = LoginForm()
+    form = LoginForm(username='username', password='password')
 
     if form.validate_on_submit():
         user = User.authenticate(
@@ -161,8 +168,7 @@ def logout():
 
     else:
         flash("Unauthorized")
-        return redirect("/") #TODO: send them to 403 unauthorized
-
+        return redirect("/")  # TODO: send them to 403 unauthorized
 
 
 ##############################################################################
@@ -213,6 +219,7 @@ def show_following(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('users/following.html', user=user)
 
+
 @app.get('/users/<int:user_id>/likes')
 def show_liked_messages(user_id):
     """Show list of messages this user has liked"""
@@ -223,6 +230,7 @@ def show_liked_messages(user_id):
 
     user = User.query.get_or_404(user_id)
     return render_template('users/likes.html', user=user)
+
 
 @app.get('/users/<int:user_id>/followers')
 def show_followers(user_id):
@@ -242,7 +250,6 @@ def start_following(follow_id):
 
     Redirect to following page for the current for the current user.
     """
-
 
     if not g.user:
         flash("Access unauthorized.", "danger")
@@ -313,6 +320,7 @@ def profile():
 
     else:
         return render_template("/users/edit.html", form=form)
+
 
 @app.post('/users/delete')
 def delete_user():
@@ -392,14 +400,11 @@ def delete_message(message_id):
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
-
     msg = Message.query.get_or_404(message_id)
     db.session.delete(msg)
     db.session.commit()
 
     return redirect(f"/users/{g.user.id}")
-
-
 
 
 @app.post('/messages/<int:message_id>/like')
@@ -454,9 +459,9 @@ def homepage():
     if g.user:
         user = g.user
 
-        # Generate a set containing id's of users whose posts we want to display
+        # Generate a set containing ids of users whose posts we want to display
         # Includes current user id, and those they follow
-        users_ids_list = [user.id for user in user.following] #NOTE: name?
+        users_ids_list = [user.id for user in user.following]  # NOTE: name?
         users_ids_list.append(user.id)
         users_ids_set = set(users_ids_list)
 
