@@ -1,6 +1,14 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, TextAreaField
-from wtforms.validators import DataRequired, Email, Length, InputRequired, Optional, URL
+from wtforms.validators import (
+    DataRequired,
+    Email,
+    Length,
+    InputRequired,
+    Optional,
+    URL
+)
+from wtforms.widgets import PasswordInput
 
 
 class MessageForm(FlaskForm):
@@ -22,11 +30,16 @@ class LoginForm(FlaskForm):
     """Login form."""
 
     username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[Length(min=6)])
+    password = StringField(
+        'Password',
+        validators=[Length(min=6)],
+        widget=PasswordInput(hide_value=False),
+    )
+
 
 class UserEditForm(FlaskForm):
     """ Form for users to edit their profiles. """
-    
+
     username = StringField(
         "Username",
         validators=[
@@ -73,6 +86,7 @@ class UserEditForm(FlaskForm):
             InputRequired()
         ]
     )
+
 
 class CSRFProtectForm(FlaskForm):
     """For protection against cross-site request forgery"""
